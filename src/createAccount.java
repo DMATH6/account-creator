@@ -26,7 +26,8 @@ public class createAccount {
 		
 		Random rand = new Random();
 		int randomInt = rand.nextInt(200);
-				
+
+		// We grab the details from the user	
 	    Scanner getData = new Scanner(System.in);  
 	    System.out.println("Please enter your first name");
 		String firstName = getData.nextLine();  
@@ -40,13 +41,13 @@ public class createAccount {
 		String address = getData.nextLine();  
 		System.out.println("Please enter your country");
 		String country = getData.nextLine();  
-
+        //Followed by generating their username
 		String username = lastName + firstName + randomInt;
 		
 		
-		//Outputs result
+		//Outputs result in command line
 		
-		System.out.println(
+		System.out.print(
 				
 				 "//////////////////////////////" + System.lineSeparator()
 				+ "Your Full Name Is " + title + " " +firstName + " " + lastName 
@@ -62,20 +63,36 @@ public class createAccount {
 		
 		//Create an array to store the data then store each type
 		ArrayList<String> outputData = new ArrayList<String>();
-		outputData.add(title + System.lineSeparator() + firstName + System.lineSeparator() + lastName + System.lineSeparator() + age + System.lineSeparator() + address + System.lineSeparator() + country + System.lineSeparator() + username );
+		outputData.add(title + "," + firstName + "," + lastName + "," + age + "," + address + "," + country + "," + username );
 		
+        //Now we filter out the data that causes issue with the csv format
+       //str = str.replaceAll("[^a-zA-Z0-9]", " ");  
+           
+            
+        
 		
 		//Outputs result to file and checks for duplicate entries
-		//Java use map datatype
+		
 		  try {
-		         File file = new File("useraccounts.txt");
+		         File file = new File("useraccounts.csv");
 				if(! file.exists()) {
+                 
 					file.createNewFile();
 				}
-				FileWriter myWriter = new FileWriter("useraccounts.txt", true);	
-		        BufferedWriter bw = new BufferedWriter(myWriter);
-				bw.append(outputData.toString());				
-				bw.close();//replace dosnt work
+				
+                FileWriter myWriter = new FileWriter("useraccounts.csv", true);	
+                // myWriter.write(
+                //       "Title" 
+                //     + "First Name" 
+                //     + "Last Name" 
+                //     + "Age" 
+                //     + "Address" 
+                //     + "Country" 
+                //     + "Username" 
+                //     + System.lineSeparator());
+		        //BufferedWriter bw = new BufferedWriter(myWriter);
+				myWriter.append(outputData.toString() + System.lineSeparator());				
+				myWriter.close();//replace dosnt work 
 
 				System.out.println("Successfully wrote to the file.");
 			} catch (IOException e) {
