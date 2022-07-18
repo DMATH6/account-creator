@@ -65,8 +65,6 @@ public class createAccount {
 		ArrayList<String> outputData = new ArrayList<String>();
 		outputData.add(title + "," + firstName + "," + lastName + "," + age + "," + address + "," + country + "," + username );
 		
-        //Now we filter out the data that causes issue with the csv format
-       //str = str.replaceAll("[^a-zA-Z0-9]", " ");  
            
             
         
@@ -94,7 +92,7 @@ public class createAccount {
 				myWriter.append(outputData.toString() + System.lineSeparator());				
 				myWriter.close();//replace dosnt work 
 
-				System.out.println("Successfully wrote to the file.");
+				System.out.println("All Done!");
 			} catch (IOException e) {
 				System.out.println("An error occurred.");
 				e.printStackTrace();
